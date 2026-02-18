@@ -77,57 +77,55 @@ It provides a full shopping experience with product listing, category filtering,
 
 ---
 
-## System Architecture (Mermaid Diagram)
+## System Architecture (Diagram)
+graph LR
 
-```mermaid
-graph TD
+  %% Core layers
+  User["User"]
+  ReactApp["React App"]
+  ReactRouter["React Router"]
+  PrivateRoute["PrivateRoute"]
+  LocalCart["LocalStorage Cart State"]
+  FirebaseAuth["Firebase Auth Service"]
 
-  subgraph Client["User Browser"]
-    A[React + Vite SPA]
-  end
+  %% Pages and routes
+  HomePage["Home"]
+  ShopPage["Shop"]
+  BlogPage["Blog"]
+  CartPage["Cart Protected"]
+  CheckoutPage["Checkout Protected"]
 
-  subgraph Routing["React Router"]
-    R1[Home<br/>/]
-    R2[Shop<br/>/shop]
-    R3[Single Product<br/>/shop/:id]
-    R4[Cart Page (Protected)<br/>/cart-page]
-    R5[Blog<br/>/blog]
-    R6[Single Blog<br/>/blog/:id]
-    R7[About<br/>/about]
-    R8[Contact<br/>/contact]
-    R9[Login<br/>/login]
-    R10[Sign Up<br/>/sign-up]
-  end
+  %% User to app
+  User --> ReactApp
 
-  subgraph StateAndContext["App State & Context"]
-    AC[AuthContext<br/>AuthProvider]
-    LS[LocalStorage<br/>cart items]
-  end
+  %% App and routing
+  ReactApp --> ReactRouter
 
-  subgraph DataSources["Frontend Data Sources"]
-    PJSON[products.json<br/>(local product data)]
-    ASSETS[Static Assets<br/>images, icons, CSS]
-  end
+  %% Public routes
+  ReactRouter --> HomePage
+  ReactRouter --> ShopPage
+  ReactRouter --> BlogPage
 
-  subgraph Backend["External Services"]
-    FBAuth[Firebase Auth<br/>Email/Password + Google]
-  end
+  %% Protected route flow
+  ReactRouter --> PrivateRoute
+  PrivateRoute --> CartPage
+  PrivateRoute --> CheckoutPage
 
-  A -->|Uses| Routing
-  A -->|Wraps with| AC
-  A -->|Reads/Writes| LS
-  A -->|Imports| PJSON
-  A -->|Loads| ASSETS
+  %% Auth for protected routes
+  PrivateRoute --> FirebaseAuth
+  ReactApp --> FirebaseAuth
 
-  AC -->|Sign up / Login / Logout| FBAuth
-  AC -->|Auth state changes| A
+  %% Cart state in LocalStorage
+  ReactApp --> LocalCart
+  CartPage --> LocalCart
+  CheckoutPage --> LocalCart
 
-  R4 -->|Guarded by| AC
-  R2 -->|Displays & filters| PJSON
-  R3 -->|Shows details from| PJSON
-  R4 -->|Renders cart from| LS
-```
-
+  %% User interaction with main sections
+  User --> HomePage
+  User --> ShopPage
+  User --> BlogPage
+  User --> CartPage
+  User --> CheckoutPage
 ---
 
 ## Project Structure (high-level)
