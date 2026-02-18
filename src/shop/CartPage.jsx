@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
-import delImgUrl from "../assets/images/shop/del.png";
+import delImgUrl from "/images/shop/del.png";
 import CheckOutPage from "./CheckOutPage";
 
 const CartPage = () => {
@@ -91,7 +91,7 @@ const CartPage = () => {
                       <td className="product-item cat-product">
                         <div className="p-thumb">
                           <Link to="/shop">
-                            <img src={item.img} alt="" />
+                            <img src={item.img} alt={item.name} />
                           </Link>
                         </div>
                         <div className="p-content">

@@ -6,28 +6,28 @@ const reviwtitle = "Add a Review";
 
 let ReviewList = [
   {
-    imgUrl: "/src/assets/images/instructor/01.jpg",
+    imgUrl: "/images/instructor/01.jpg",
     imgAlt: "Client thumb",
     name: "Ganelon Boileau",
     date: "Posted on Jun 10, 2022 at 6:57 am",
     desc: "Enthusiast build innovativ initiatives before lonterm high-impact awesome theme seo psd porta monetize covalent leadership after without resource.",
   },
   {
-    imgUrl: "/src/assets/images/instructor/02.jpg",
+    imgUrl: "/images/instructor/02.jpg",
     imgAlt: "Client thumb",
     name: "Morgana Cailot",
     date: "Posted on Jun 10, 2022 at 6:57 am",
     desc: "Enthusiast build innovativ initiatives before lonterm high-impact awesome theme seo psd porta monetize covalent leadership after without resource.",
   },
   {
-    imgUrl: "/src/assets/images/instructor/03.jpg",
+    imgUrl: "/images/instructor/03.jpg",
     imgAlt: "Client thumb",
     name: "Telford Bois",
     date: "Posted on Jun 10, 2022 at 6:57 am",
     desc: "Enthusiast build innovativ initiatives before lonterm high-impact awesome theme seo psd porta monetize covalent leadership after without resource.",
   },
   {
-    imgUrl: "/src/assets/images/instructor/04.jpg",
+    imgUrl: "/images/instructor/04.jpg",
     imgAlt: "Client thumb",
     name: "Cher Daviau",
     date: "Posted on Jun 10, 2022 at 6:57 am",
@@ -63,7 +63,7 @@ const Review = ({result}) => {
             {ReviewList.map((review, i) => (
               <li key={i}>
                 <div className="post-thumb">
-                  <img src={review.imgUrl} alt="" />
+                  <img src={review.imgUrl} alt={review.name} />
                 </div>
                 <div className="post-content">
                   <div className="entry-meta">
