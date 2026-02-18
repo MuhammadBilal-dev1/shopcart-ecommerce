@@ -78,6 +78,7 @@ It provides a full shopping experience with product listing, category filtering,
 ---
 
 ## System Architecture (Diagram)
+```mermaid
 graph LR
 
   %% Core layers
@@ -126,6 +127,7 @@ graph LR
   User --> BlogPage
   User --> CartPage
   User --> CheckoutPage
+  ```
 ---
 
 ## Project Structure (high-level)
